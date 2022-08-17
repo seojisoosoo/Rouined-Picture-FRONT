@@ -8,11 +8,11 @@ const Dom = styled.div`
 const Introduce = styled.div`
   border: 1px solid #d9d9d9;
   background-color: #d9d9d9;
-  width: 600px;
-  height: 500px;
+  width: 100vh;
+  height: 70vh;
   border-radius: 5px;
   text-align: center;
-  margin: 20px 0px;
+  margin: 3vh 0vh;
 `;
 const Button = styled.button`
   margin: 0px 7px;

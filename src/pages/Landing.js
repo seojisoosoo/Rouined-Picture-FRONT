@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import { Link } from "react-router-dom";
 const Dom = styled.div`
   display: flex;
   justify-content: center;
@@ -28,8 +28,12 @@ const Landing = () => {
       </Dom>
 
       <Dom>
-        <Button>watch</Button>
-        <Button>upload</Button>
+        <Link to="/read">
+          <Button>watch</Button>
+        </Link>
+        <Link to="/create">
+          <Button>upload</Button>
+        </Link>
       </Dom>
     </>
   );

@@ -2,9 +2,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import datas from "../db/data.json";
 import styled from "styled-components";
+import "../App.css";
 
 const Img = styled.img`
-  width: 100vh;
+  width: 80vh;
+  margin-top: 2vh;
 `;
 const Dom = styled.div`
   display: flex;
@@ -12,12 +14,12 @@ const Dom = styled.div`
   flec-direction: column;
 `;
 const TagDom = styled.div`
-  margin-top: 1vh;
+  margin-top: 2vh;
   display: flex;
   justify-content: center;
 `;
 const Tag = styled.div`
-  width: 100vh;
+  width: 80vh;
   float: left;
 `;
 const Label = styled.div`

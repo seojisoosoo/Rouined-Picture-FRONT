@@ -1,8 +1,17 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import "../App.css";
 
 const Img = styled.label`
+  width: 80vh;
+  height: 52.3vh;
+  margin-top: 2vh;
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+  cursor: pointer;
+`;
+const Background = styled.div`
   width: 80vh;
   height: 52.3vh;
   margin-top: 2vh;
@@ -11,20 +20,17 @@ const Img = styled.label`
   justify-content: center;
   vertical-align: middle;
   cursor: pointer;
-`;
-const ShowImg = styled.img`
-  width: 80vh;
-  display: none;
+  position: absolute;
+  z-index: 1;
 `;
 const Dom = styled.div`
   display: flex;
   justify-content: center;
-  flec-direction: column;
 `;
 const TagDom = styled.div`
+  width: 80vh;
   margin-top: 2vh;
-  display: flex;
-  justify-content: center;
+  position: absolute;
 `;
 const Tag = styled.div`
   width: 80vh;
@@ -52,21 +58,20 @@ const BodyDom = styled.div`
   display: flex;
   flex-direction: row;
 `;
-document.getElementById("file").onchange = function () {
-  var reader = new FileReader();
-
-  reader.onload = function (e) {
-    // get loaded data and render thumbnail.
-    document.getElementById("showimg").src = e.target.result;
-    // document.getElementById("showimg").style.display = "flex";
-    // document.querySelector("#noneimg").style.display = "none";
-  };
-
-  // read the image file as a data URL.
-  reader.readAsDataURL(this.files[0]);
-};
 
 const Create = () => {
+  const [imageSrc, setImageSrc] = useState("");
+  const encodeFileToBase64 = (fileBlob) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(fileBlob);
+    return new Promise((resolve) => {
+      reader.onload = () => {
+        setImageSrc(reader.result);
+        resolve();
+        document.querySelector("#background").style.display = "none";
+      };
+    });
+  };
   const photoRef = useRef(null);
   const writerRef = useRef(null);
   const titleRef = useRef(null);
@@ -75,6 +80,7 @@ const Create = () => {
   return (
     <>
       <Dom>
+        <Background id="background" />
         <Img htmlFor="file">
           <img
             src="img/addimg.png"
@@ -84,58 +90,76 @@ const Create = () => {
               height: "15vh",
               position: "relative",
               top: "19vh",
+              zIndex: "3",
             }}
           />
+          {imageSrc && (
+            <img
+              src={imageSrc}
+              id="showimg"
+              alt="#"
+              style={{
+                height: "52.3vh",
+                position: "absolute",
+                zIndex: "2",
+              }}
+            />
+          )}
         </Img>
-        <ShowImg id="showimg" alt="#" />
+
         <input
           type="file"
           name="file"
           id="file"
           ref={photoRef}
           style={{ visibility: "hidden", width: "0.1vh" }}
+          onChange={(e) => {
+            encodeFileToBase64(e.target.files[0]);
+          }}
         />
       </Dom>
-      <TagDom>
-        <Tag>
-          <Label>
-            <p>
-              작품명 |
-              <Input
-                type="text"
-                ref={titleRef}
-                placeholder="작품명을 입력해주세요"
-              />
-            </p>
-            <p>
-              작가명 |{" "}
-              <Input
-                type="text"
-                ref={writerRef}
-                placeholder="작가명을 입력해주세요"
-              />
-            </p>
-            <BodyDom>
-              <p>작품 설명 |</p>
-              <Textarea
-                cols="18"
-                rows="5"
-                ref={bodyRef}
-                placeholder="작품 설명을 입력해주세요"
-              />
-            </BodyDom>
-            <p>
-              password |{" "}
-              <Input
-                type="text"
-                ref={writerRef}
-                placeholder="비밀번호를 입력해주세요"
-              />
-            </p>
-          </Label>
-          <Button>save</Button>
-        </Tag>
-      </TagDom>
+      <Dom>
+        <TagDom>
+          <Tag>
+            <Label>
+              <p>
+                작품명 |
+                <Input
+                  type="text"
+                  ref={titleRef}
+                  placeholder="작품명을 입력해주세요"
+                />
+              </p>
+              <p>
+                작가명 |{" "}
+                <Input
+                  type="text"
+                  ref={writerRef}
+                  placeholder="작가명을 입력해주세요"
+                />
+              </p>
+              <BodyDom>
+                <p>작품 설명 |</p>
+                <Textarea
+                  cols="18"
+                  rows="5"
+                  ref={bodyRef}
+                  placeholder="작품 설명을 입력해주세요"
+                />
+              </BodyDom>
+              <p>
+                password |{" "}
+                <Input
+                  type="text"
+                  ref={writerRef}
+                  placeholder="비밀번호를 입력해주세요"
+                />
+              </p>
+            </Label>
+            <Button>save</Button>
+          </Tag>
+        </TagDom>
+      </Dom>
     </>
   );
 };

@@ -7,3 +7,7 @@ p{
 }
 input:focus {outline: none;}
 textarea:focus {outline: none;}
+#wrong-password{
+  color: red;
+  visibility: hidden;
+}

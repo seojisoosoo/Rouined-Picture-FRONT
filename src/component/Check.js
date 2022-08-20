@@ -17,7 +17,7 @@ const Dom = styled.div`
   text-algin: center;
 `;
 const Button = styled.button`
-  margin: 3vh 0.5vh;
+  margin: 5vh 0.5vh;
 `;
 const BodyDom = styled.div`
   position: relative;
@@ -36,6 +36,9 @@ const Check = () => {
         <Input type="password" />
       </Dom>
       <Hr />
+      <Dom>
+        <p id="wrong-password">비밀번호가 틀렸습니다</p>
+      </Dom>
 
       <Dom>
         <Button>submit</Button>

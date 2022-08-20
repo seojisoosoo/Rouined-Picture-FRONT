@@ -12,13 +12,16 @@ const Dom = styled.div`
   flec-direction: column;
 `;
 const TagDom = styled.div`
+  margin-top: 1vh;
   display: flex;
-  justify-content: left;
-  flec-direction: column;
+  justify-content: center;
 `;
 const Tag = styled.div`
-  width: 5vh;
-  height: 5vh;
+  width: 100vh;
+  float: left;
+`;
+const Label = styled.div`
+  width: 25%;
   background-color: white;
 `;
 const Read = () => {
@@ -30,9 +33,11 @@ const Read = () => {
       </Dom>
       <TagDom>
         <Tag>
-          <p>title</p>
-          <p>writer</p>
-          <p>body</p>
+          <Label>
+            <p>title</p>
+            <p>writer</p>
+            <p>body</p>
+          </Label>
         </Tag>
       </TagDom>
     </>

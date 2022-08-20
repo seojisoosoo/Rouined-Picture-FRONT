@@ -14,6 +14,10 @@ const Introduce = styled.div`
   text-align: center;
   margin: 3vh 0vh;
 `;
+const Text = styled.p`
+  position: relative;
+  top: 15vh;
+`;
 const Button = styled.button`
   margin: 0px 7px;
 `;
@@ -23,7 +27,9 @@ const Landing = () => {
     <>
       <Dom>
         <Introduce>
-          <p>망한 필름 전시회</p>
+          <Text>
+            <p>망한 필름 전시회</p>
+          </Text>
         </Introduce>
       </Dom>
 

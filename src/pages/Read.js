@@ -23,15 +23,24 @@ const Tag = styled.div`
   float: left;
 `;
 const Label = styled.div`
-  width: 25%;
+  width: 40%;
   background-color: white;
+  padding: 1vh;
+  float: left;
 `;
 const Button = styled.button`
   width: 10%;
   float: right;
 `;
+const Like = styled.div`
+  margin: -0.7vh 0.5vh 0vh 0vh;
+  float: right;
+  display: flex;
+  justify-contetn: center;
+  flex-direction: column;
+`;
 const Read = () => {
-  const [likes, setLikes] = useState();
+  const [like, setLike] = useState(0);
   const navigate = useNavigate();
   return (
     <>
@@ -47,6 +56,18 @@ const Read = () => {
           </Label>
 
           <Button>update</Button>
+
+          <Like>
+            <img
+              src="img/like.png"
+              onClick={() => {
+                setLike(like + 1);
+              }}
+              alt="#"
+              style={{ width: "5vh" }}
+            />
+            <p style={{ textAlign: "center" }}>{like}</p>
+          </Like>
         </Tag>
       </TagDom>
     </>

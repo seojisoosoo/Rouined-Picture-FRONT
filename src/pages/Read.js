@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import datas from "../db/data.json";
 import styled from "styled-components";
@@ -26,7 +26,12 @@ const Label = styled.div`
   width: 25%;
   background-color: white;
 `;
+const Button = styled.button`
+  width: 10%;
+  float: right;
+`;
 const Read = () => {
+  const [likes, setLikes] = useState();
   const navigate = useNavigate();
   return (
     <>
@@ -40,6 +45,8 @@ const Read = () => {
             <p>writer</p>
             <p>body</p>
           </Label>
+
+          <Button>update</Button>
         </Tag>
       </TagDom>
     </>

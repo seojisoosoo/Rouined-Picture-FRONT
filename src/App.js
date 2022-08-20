@@ -7,6 +7,7 @@ import Read from "./pages/Read";
 import Update from "./pages/Update";
 import "./App.css";
 import Landing from "./pages/Landing";
+import Check from "./component/Check";
 const Dom = styled.div`
   position: absolute;
   top: 0;
@@ -25,7 +26,8 @@ const App = () => {
         <Route path="/" element={<Landing />} />
         <Route path="/read" element={<Read />} />
         <Route path="/create" element={<Create />} />
-        <Route path="/:id/update" element={<Update />} />
+        <Route path="/update" element={<Update />} />
+        <Route path="/check" element={<Check />} />
       </Routes>
     </Dom>
   );

@@ -42,6 +42,9 @@ const Like = styled.div`
 const Read = () => {
   const [like, setLike] = useState(0);
   const navigate = useNavigate();
+  const update = () => {
+    navigate("/check");
+  };
   return (
     <>
       <Dom>
@@ -55,7 +58,7 @@ const Read = () => {
             <p>body</p>
           </Label>
 
-          <Button>update</Button>
+          <Button onClick={update}>update</Button>
 
           <Like>
             <img

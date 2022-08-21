@@ -11,7 +11,6 @@ const Img = styled.img`
 const Dom = styled.div`
   display: flex;
   justify-content: center;
-  flec-direction: column;
 `;
 const TagDom = styled.div`
   margin-top: 2vh;

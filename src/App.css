@@ -2,7 +2,7 @@ a{
   text-decoration: none;
 }
 p{
-  padding: 0;
+  padding: 0.5vh 0vh 0.5vh 0vh ;
   margin: 0;
 }
 input:focus {outline: none;}

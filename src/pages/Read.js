@@ -5,7 +5,7 @@ import styled from "styled-components";
 import "../App.css";
 
 const Img = styled.img`
-  width: 80vh;
+  height: 52.3vh;
   margin-top: 2vh;
 `;
 const Dom = styled.div`

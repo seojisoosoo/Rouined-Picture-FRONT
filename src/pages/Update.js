@@ -103,6 +103,7 @@ const Update = () => {
                 position: "absolute",
                 zIndex: "2",
               }}
+              //여기에 넣어둔 img 보여주기 or 새로 넣은 사진 보여주기
             />
           )}
         </Img>

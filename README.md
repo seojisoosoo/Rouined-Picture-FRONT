@@ -7,7 +7,7 @@ https://rouined-photo-exhibition.netlify.app/
 - [x] post 페이지 스타일링
 - [x] update 페이지 스타일링
 - [ ] 데이터 패칭
-- [ ] 랜딩 페이지 글 작성
+- [x] 랜딩 페이지 글 작성
 - [x] 비밀번호 확인 모달 제작
 - [ ] 컴포넌트 연결
 - [ ] 사용자 피드백 페이지 링크 연결

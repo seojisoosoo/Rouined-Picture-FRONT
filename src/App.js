@@ -8,7 +8,7 @@ import Update from "./pages/Update";
 import "./App.css";
 import Landing from "./pages/Landing";
 import Check from "./component/Check";
-import Feedback from "./component/Feedback";
+
 const Dom = styled.div`
   position: absolute;
   top: 0;
@@ -30,8 +30,6 @@ const App = () => {
         <Route path="/update" element={<Update />} />
         <Route path="/check" element={<Check />} />
       </Routes>
-
-      <Feedback />
     </Dom>
   );
 };

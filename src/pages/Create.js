@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import "../App.css";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Img = styled.label`
   width: 61vh;
@@ -57,8 +59,20 @@ const BodyDom = styled.div`
   display: flex;
   flex-direction: row;
 `;
-
+const ImgIcon = styled.img`
+  width: 12vh;
+  height: 12vh;
+  position: relative;
+  top: 14vh;
+  z-index: 3;
+`;
+const ShowImg = styled.img`
+  height: 40vh;
+  position: absolute;
+  z-index: 2;
+`;
 const Create = () => {
+  const navigate = useNavigate();
   const [imageSrc, setImageSrc] = useState("");
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
@@ -71,6 +85,30 @@ const Create = () => {
       };
     });
   };
+  const onSubmit = (e) => {
+    axios
+      .post(
+        "http://127.0.0.1:8000/",
+        {
+          // img: photoRef.current.value,
+          img: e.target.files[0].name,
+          title: titleRef.current.value,
+          writer: writerRef.current.value,
+          body: bodyRef.current.value,
+        },
+        {
+          "Content-Type": "application/json",
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        if (res.data.ok) {
+          console.log(res);
+          alert("추가완료!");
+          navigate("/");
+        }
+      });
+  };
   const photoRef = useRef(null);
   const writerRef = useRef(null);
   const titleRef = useRef(null);
@@ -81,29 +119,8 @@ const Create = () => {
       <Dom>
         <Background id="background" />
         <Img htmlFor="file">
-          <img
-            src="img/addimg.png"
-            alt="#"
-            style={{
-              width: "15vh",
-              height: "15vh",
-              position: "relative",
-              top: "19vh",
-              zIndex: "3",
-            }}
-          />
-          {imageSrc && (
-            <img
-              src={imageSrc}
-              id="showimg"
-              alt="#"
-              style={{
-                height: "52.3vh",
-                position: "absolute",
-                zIndex: "2",
-              }}
-            />
-          )}
+          <ImgIcon src="img/addimg.png" alt="#" />
+          {imageSrc && <ShowImg src={imageSrc} id="showimg" alt="#" />}
         </Img>
 
         <input
@@ -114,6 +131,7 @@ const Create = () => {
           style={{ visibility: "hidden", width: "0.1vh" }}
           onChange={(e) => {
             encodeFileToBase64(e.target.files[0]);
+            console.log(e.target.files[0].name);
           }}
         />
       </Dom>
@@ -121,22 +139,20 @@ const Create = () => {
         <TagDom>
           <Tag>
             <Label>
-              <p>
-                작품명 |
-                <Input
-                  type="text"
-                  ref={titleRef}
-                  placeholder="작품명을 입력해주세요"
-                />
-              </p>
-              <p>
-                작가명 |{" "}
-                <Input
-                  type="text"
-                  ref={writerRef}
-                  placeholder="작가명을 입력해주세요"
-                />
-              </p>
+              <p>작품명 |</p>
+              <Input
+                type="text"
+                ref={titleRef}
+                placeholder="작품명을 입력해주세요"
+              />
+
+              <p>작가명 |</p>
+              <Input
+                type="text"
+                ref={writerRef}
+                placeholder="작가명을 입력해주세요"
+              />
+
               <BodyDom>
                 <p>작품 설명 |</p>
                 <Textarea
@@ -146,16 +162,14 @@ const Create = () => {
                   placeholder="작품 설명을 입력해주세요"
                 />
               </BodyDom>
-              <p>
-                password |{" "}
-                <Input
-                  type="text"
-                  ref={writerRef}
-                  placeholder="비밀번호를 입력해주세요"
-                />
-              </p>
+              <p>password |</p>
+              <Input
+                type="text"
+                ref={writerRef}
+                placeholder="비밀번호를 입력해주세요"
+              />
             </Label>
-            <Button>save</Button>
+            <Button onSubmit={(e) => onSubmit(e)}>save</Button>
           </Tag>
         </TagDom>
       </Dom>

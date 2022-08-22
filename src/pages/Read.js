@@ -37,8 +37,18 @@ const Like = styled.div`
   justify-contetn: center;
   flex-direction: column;
 `;
+const LikeIcon = styled.img`
+  width: 5vh;
+  cursor: pointer;
+`;
+const LikeCount = styled.p`
+  text-align: center;
+  padding: 0vh;
+  margin-top: -0.5vh;
+`;
 const Read = () => {
   const [like, setLike] = useState(0);
+  // const [photos, setPhotos] = useState();
   const navigate = useNavigate();
   const update = () => {
     navigate("/check");
@@ -59,23 +69,14 @@ const Read = () => {
           <Button onClick={update}>update</Button>
 
           <Like>
-            <img
+            <LikeIcon
               src="img/like.png"
               onClick={() => {
                 setLike(like + 1);
               }}
               alt="#"
-              style={{ width: "5vh", cursor: "pointer" }}
             />
-            <p
-              style={{
-                textAlign: "center",
-                padding: "0vh",
-                marginTop: "-0.5vh",
-              }}
-            >
-              {like}
-            </p>
+            <LikeCount>{like}</LikeCount>
           </Like>
         </Tag>
       </TagDom>

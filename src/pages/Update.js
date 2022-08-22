@@ -57,7 +57,13 @@ const BodyDom = styled.div`
   display: flex;
   flex-direction: row;
 `;
-
+const ImgIcon = styled.img`
+  width: 12vh;
+  height: 12vh;
+  position: relative;
+  top: 14vh;
+  z-index: 3;
+`;
 const Update = () => {
   const [imageSrc, setImageSrc] = useState("");
   const encodeFileToBase64 = (fileBlob) => {
@@ -81,17 +87,7 @@ const Update = () => {
       <Dom>
         <Background id="background" />
         <Img htmlFor="file">
-          <img
-            src="img/addimg.png"
-            alt="#"
-            style={{
-              width: "15vh",
-              height: "15vh",
-              position: "relative",
-              top: "19vh",
-              zIndex: "3",
-            }}
-          />
+          <ImgIcon src="img/addimg.png" alt="#" />
           {imageSrc && (
             <img
               src={imageSrc}
@@ -122,20 +118,18 @@ const Update = () => {
         <TagDom>
           <Tag>
             <Label>
-              <p>
-                작품명 |
-                <Input type="text" ref={titleRef} />
-              </p>
-              <p>
-                작가명 | <Input type="text" ref={writerRef} />
-              </p>
+              <p>작품명 |</p>
+              <Input type="text" ref={titleRef} />
+
+              <p>작가명 | </p>
+              <Input type="text" ref={writerRef} />
+
               <BodyDom>
                 <p>작품 설명 |</p>
                 <Textarea cols="18" rows="5" ref={bodyRef} />
               </BodyDom>
-              <p>
-                password | <Input type="text" ref={writerRef} />
-              </p>
+              <p>password | </p>
+              <Input type="text" ref={writerRef} />
             </Label>
             <Button>save</Button>
           </Tag>

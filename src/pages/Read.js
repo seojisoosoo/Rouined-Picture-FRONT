@@ -5,7 +5,7 @@ import styled from "styled-components";
 import "../App.css";
 
 const Img = styled.img`
-  height: 52.3vh;
+  height: 40vh;
   margin-top: 2vh;
 `;
 const Dom = styled.div`
@@ -18,7 +18,7 @@ const TagDom = styled.div`
   justify-content: center;
 `;
 const Tag = styled.div`
-  width: 80vh;
+  width: 61vh;
   float: left;
 `;
 const Label = styled.div`
@@ -28,7 +28,6 @@ const Label = styled.div`
   float: left;
 `;
 const Button = styled.button`
-  width: 10%;
   float: right;
 `;
 const Like = styled.div`

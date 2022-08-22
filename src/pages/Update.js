@@ -3,8 +3,8 @@ import styled from "styled-components";
 import "../App.css";
 
 const Img = styled.label`
-  width: 80vh;
-  height: 52.3vh;
+  width: 61vh;
+  height: 40vh;
   margin-top: 2vh;
   display: flex;
   justify-content: center;
@@ -12,8 +12,8 @@ const Img = styled.label`
   cursor: pointer;
 `;
 const Background = styled.div`
-  width: 80vh;
-  height: 52.3vh;
+  width: 61vh;
+  height: 40vh;
   margin-top: 2vh;
   background-color: #d9d9d9;
   display: flex;
@@ -28,12 +28,12 @@ const Dom = styled.div`
   justify-content: center;
 `;
 const TagDom = styled.div`
-  width: 80vh;
+  width: 61vh;
   margin-top: 2vh;
   position: absolute;
 `;
 const Tag = styled.div`
-  width: 80vh;
+  width: 61vh;
   float: left;
 `;
 const Label = styled.div`
@@ -43,7 +43,6 @@ const Label = styled.div`
   float: left;
 `;
 const Button = styled.button`
-  width: 10%;
   float: right;
 `;
 const Input = styled.input`

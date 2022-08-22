@@ -65,9 +65,17 @@ const Read = () => {
                 setLike(like + 1);
               }}
               alt="#"
-              style={{ width: "5vh" }}
+              style={{ width: "5vh", cursor: "pointer" }}
             />
-            <p style={{ textAlign: "center" }}>{like}</p>
+            <p
+              style={{
+                textAlign: "center",
+                padding: "0vh",
+                marginTop: "-0.5vh",
+              }}
+            >
+              {like}
+            </p>
           </Like>
         </Tag>
       </TagDom>

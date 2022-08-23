@@ -120,7 +120,7 @@ const Update = () => {
         if (res.data.ok) {
           console.log(res);
           alert("수정완료!");
-          navigate("/");
+          navigate("/read");
         }
       });
   };

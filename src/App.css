@@ -13,6 +13,10 @@ textarea{
   font-size: 6pt;
   margin-top:0.3vh;
 }
+button:focus{outline: none;}
+button{
+  cursor: pointer;
+}
 input:focus {outline: none;}
 textarea:focus {outline: none;}
 #wrong-password{

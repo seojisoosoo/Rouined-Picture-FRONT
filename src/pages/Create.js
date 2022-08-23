@@ -111,7 +111,7 @@ const Create = () => {
           if (res.data.ok) {
             console.log(res);
             alert("추가완료!");
-            navigate("/");
+            navigate("/read");
           }
         });
     }

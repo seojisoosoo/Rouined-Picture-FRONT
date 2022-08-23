@@ -38,24 +38,27 @@ const Button = styled.button`
   // margin: 30px 0px 0px 10px;
   // cursor: pointer;
 `;
-const Like = styled.div`
+const Like = styled.button`
   margin: -0.7vh 0.5vh 0vh 0vh;
   float: right;
   display: flex;
-  justify-contetn: center;
+  justify-content: center;
   flex-direction: column;
+  border: transparent;
+  background-color: transparent;
 `;
 const LikeIcon = styled.img`
   width: 5vh;
   cursor: pointer;
+  margin-bottom: -0.5vh;
 `;
 const LikeCount = styled.p`
-  text-align: center;
   padding: 0vh;
-  margin-top: -0.5vh;
+  margin: auto;
 `;
 const Read = () => {
-  const [like, setLike] = useState(0);
+  const [like, setLike] = useState({});
+  // const [dataLike, setDataLike] = useState();
   const [photos, setPhotos] = useState();
   const navigate = useNavigate();
   const update = (url, id) => {
@@ -76,6 +79,16 @@ const Read = () => {
   }, []);
   console.log("성공" + photos);
 
+  const likes = (id) => {
+    // setLike(like + 1);
+    axios.get(`http://127.0.0.1:8000/${id}/like`).then((res) => {
+      if (res.data.ok) {
+        console.log(res.data);
+        setLike(res.data.data.like_count);
+        console.log(like);
+      }
+    });
+  };
   return (
     <Body>
       {photos &&
@@ -103,9 +116,7 @@ const Read = () => {
                 <Like>
                   <LikeIcon
                     src="img/like.png"
-                    onClick={() => {
-                      setLike(like + 1);
-                    }}
+                    onClick={() => likes(photo.id)}
                     alt="#"
                   />
                   <LikeCount>{like}</LikeCount>

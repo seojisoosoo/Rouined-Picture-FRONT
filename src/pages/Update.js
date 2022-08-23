@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import "../App.css";
+import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Img = styled.label`
   width: 61vh;
@@ -64,8 +66,17 @@ const ImgIcon = styled.img`
   top: 14vh;
   z-index: 3;
 `;
+const ShowImg = styled.img`
+  //   width: 61vh;
+  height: 40vh;
+  position: absolute;
+  z-index: 2;
+`;
 const Update = () => {
-  const [imageSrc, setImageSrc] = useState("");
+  const { state } = useLocation();
+  const [imageSrc, setImageSrc] = useState(`${state.detail.img}`);
+  console.log(state);
+  const navigate = useNavigate();
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
     reader.readAsDataURL(fileBlob);
@@ -77,30 +88,61 @@ const Update = () => {
       };
     });
   };
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    console.log("put 시작");
+
+    let formData = new FormData();
+    if (photoRef.current.files[0] === undefined) {
+      console.log("null이다");
+    } else {
+      formData.append("imgFile", photoRef.current.files[0]);
+    }
+    console.log(titleRef.current.value);
+    console.log(writerRef.current.value);
+    console.log(bodyRef.current.value);
+    console.log(passwordRef.current.value);
+
+    formData.append("title", titleRef.current.value);
+    formData.append("writer", writerRef.current.value);
+    formData.append("body", bodyRef.current.value);
+
+    formData.append("password", passwordRef.current.value);
+    axios
+      .post(`http://127.0.0.1:8000/${state.id}/update`, formData, {
+        "Content-Type": "application/json",
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.data.ok) {
+          console.log(res);
+          alert("수정완료!");
+          navigate("/");
+        }
+      });
+  };
   const photoRef = useRef(null);
   const writerRef = useRef(null);
   const titleRef = useRef(null);
   const bodyRef = useRef(null);
+  const passwordRef = useRef(null);
 
   return (
-    <>
+    <form>
       <Dom>
         <Background id="background" />
         <Img htmlFor="file">
-          <ImgIcon src="img/addimg.png" alt="#" />
+          <ImgIcon src="img/addimg.png" alt="logo" />
           {imageSrc && (
-            <img
+            <ShowImg
               src={imageSrc}
               id="showimg"
               alt="#"
-              style={{
-                height: "52.3vh",
-                position: "absolute",
-                zIndex: "2",
-              }}
               //여기에 넣어둔 img 보여주기 or 새로 넣은 사진 보여주기
             />
           )}
+          {/* <ShowImg src={state.detail.img} alt="#" /> */}
         </Img>
 
         <input
@@ -119,23 +161,42 @@ const Update = () => {
           <Tag>
             <Label>
               <p>작품명 |</p>
-              <Input type="text" ref={titleRef} />
+              <Input
+                type="text"
+                ref={titleRef}
+                defaultValue={state.detail.title}
+              />
 
               <p>작가명 | </p>
-              <Input type="text" ref={writerRef} />
+              <Input
+                type="text"
+                ref={writerRef}
+                defaultValue={state.detail.writer}
+              />
 
               <BodyDom>
                 <p>작품 설명 |</p>
-                <Textarea cols="18" rows="5" ref={bodyRef} />
+                <Textarea
+                  cols="18"
+                  rows="5"
+                  ref={bodyRef}
+                  defaultValue={state.detail.body}
+                />
               </BodyDom>
               <p>password | </p>
-              <Input type="text" ref={writerRef} />
+              <Input
+                type="text"
+                ref={passwordRef}
+                defaultValue={state.detail.password}
+              />
             </Label>
-            <Button>save</Button>
+            <Button type="button" onClick={(e) => onSubmit(e)}>
+              save
+            </Button>
           </Tag>
         </TagDom>
       </Dom>
-    </>
+    </form>
   );
 };
 

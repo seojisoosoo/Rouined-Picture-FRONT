@@ -27,8 +27,8 @@ const App = () => {
         <Route path="/" element={<Landing />} />
         <Route path="/read" element={<Read />} />
         <Route path="/create" element={<Create />} />
-        <Route path="/update" element={<Update />} />
-        <Route path="/check" element={<Check />} />
+        <Route path="/:id/update" element={<Update />} />
+        <Route path="/:id/check" element={<Check />} />
       </Routes>
     </Dom>
   );

@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import "../App.css";
 
@@ -24,6 +25,9 @@ const BodyDom = styled.div`
   top: 20vh;
 `;
 const Check = () => {
+  const { state } = useLocation();
+  console.log(state);
+
   return (
     <BodyDom>
       <Dom>

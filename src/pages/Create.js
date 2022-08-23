@@ -86,36 +86,43 @@ const Create = () => {
     });
   };
   const onSubmit = (e) => {
-    axios
-      .post(
-        "http://127.0.0.1:8000/",
-        {
-          // img: photoRef.current.value,
-          img: e.target.files[0].name,
-          title: titleRef.current.value,
-          writer: writerRef.current.value,
-          body: bodyRef.current.value,
-        },
-        {
+    e.preventDefault();
+
+    console.log("post 시작");
+
+    // formData.append("imgFile", photoRef.current.files[0]);
+    // formData.append("POST", "post");
+
+    if (!photoRef.current.files[0]) alert("사진을 추가해주세요!");
+    if (!passwordRef.current.value) alert("비밀번호를 입력해주세요!");
+    if (photoRef.current.files[0] && passwordRef.current.value) {
+      let formData = new FormData();
+      formData.append("imgFile", photoRef.current.files[0]);
+      formData.append("title", titleRef.current.value);
+      formData.append("writer", writerRef.current.value);
+      formData.append("body", bodyRef.current.value);
+      formData.append("password", passwordRef.current.value);
+      axios
+        .post("http://127.0.0.1:8000/", formData, {
           "Content-Type": "application/json",
-        }
-      )
-      .then((res) => {
-        console.log(res);
-        if (res.data.ok) {
+        })
+        .then((res) => {
           console.log(res);
-          alert("추가완료!");
-          navigate("/");
-        }
-      });
+          if (res.data.ok) {
+            console.log(res);
+            alert("추가완료!");
+            navigate("/");
+          }
+        });
+    }
   };
   const photoRef = useRef(null);
   const writerRef = useRef(null);
   const titleRef = useRef(null);
   const bodyRef = useRef(null);
-
+  const passwordRef = useRef(null);
   return (
-    <>
+    <form>
       <Dom>
         <Background id="background" />
         <Img htmlFor="file">
@@ -165,15 +172,17 @@ const Create = () => {
               <p>password |</p>
               <Input
                 type="text"
-                ref={writerRef}
+                ref={passwordRef}
                 placeholder="비밀번호를 입력해주세요"
               />
             </Label>
-            <Button onSubmit={(e) => onSubmit(e)}>save</Button>
+            <Button type="button" onClick={(e) => onSubmit(e)}>
+              save
+            </Button>
           </Tag>
         </TagDom>
       </Dom>
-    </>
+    </form>
   );
 };
 

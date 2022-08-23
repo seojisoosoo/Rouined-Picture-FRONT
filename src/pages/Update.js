@@ -108,7 +108,9 @@ const Update = () => {
     formData.append("writer", writerRef.current.value);
     formData.append("body", bodyRef.current.value);
 
+    if (!passwordRef.current.value) alert("비밀번호를 입력해주세요!");
     formData.append("password", passwordRef.current.value);
+
     axios
       .post(`http://127.0.0.1:8000/${state.id}/update`, formData, {
         "Content-Type": "application/json",

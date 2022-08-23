@@ -1,7 +1,8 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import "../App.css";
+import { useRef } from "react";
 
 const Input = styled.input`
   border: 1px solid transparent;
@@ -24,10 +25,22 @@ const BodyDom = styled.div`
   position: relative;
   top: 20vh;
 `;
+
 const Check = () => {
   const { state } = useLocation();
+  const pw = state.detail.password;
   console.log(state);
-
+  const pwConfirmRef = useRef(null);
+  const navigate = useNavigate();
+  const check = () => {
+    console.log(pw);
+    console.log(pwConfirmRef.current.value);
+    if (pw === pwConfirmRef.current.value) {
+      navigate(`/${state.id}/update`, { state });
+    } else {
+      alert("비밀번호가 틀렸습니다!");
+    }
+  };
   return (
     <BodyDom>
       <Dom>
@@ -37,7 +50,7 @@ const Check = () => {
         <p>작품 게재 시 작성했던 비밀번호를 입력해주세요</p>
       </Dom>
       <Dom>
-        <Input type="password" />
+        <Input type="password" ref={pwConfirmRef} />
       </Dom>
       <Hr />
       <Dom>
@@ -45,7 +58,7 @@ const Check = () => {
       </Dom>
 
       <Dom>
-        <Button>submit</Button>
+        <Button onClick={check}>submit</Button>
         <Button>cancel</Button>
       </Dom>
     </BodyDom>

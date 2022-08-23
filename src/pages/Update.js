@@ -144,7 +144,6 @@ const Update = () => {
               //여기에 넣어둔 img 보여주기 or 새로 넣은 사진 보여주기
             />
           )}
-          {/* <ShowImg src={state.detail.img} alt="#" /> */}
         </Img>
 
         <input

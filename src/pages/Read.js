@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
@@ -57,7 +57,9 @@ const LikeCount = styled.p`
   margin: auto;
 `;
 const Read = () => {
-  const [like, setLike] = useState({});
+  // const [like, setLike] = useState({});
+  // const [like, setLike] = useState(0);
+
   // const [dataLike, setDataLike] = useState();
   const [photos, setPhotos] = useState();
   const navigate = useNavigate();
@@ -81,11 +83,12 @@ const Read = () => {
 
   const likes = (id) => {
     // setLike(like + 1);
-    axios.get(`http://127.0.0.1:8000/${id}/like`).then((res) => {
+    axios.post(`http://127.0.0.1:8000/${id}/like`).then((res) => {
       if (res.data.ok) {
         console.log(res.data);
-        setLike(res.data.data.like_count);
-        console.log(like);
+        window.location.reload();
+        // setLike[id] = res.data.data.like_count;
+        // console.log(like);
       }
     });
   };
@@ -93,8 +96,8 @@ const Read = () => {
     <Body>
       {photos &&
         photos.map((photo) => (
-          <>
-            <Dom key={photo.id}>
+          <Fragment key={photo.id}>
+            <Dom>
               <Img src={photo.img} alt="no image" />
             </Dom>
             <TagDom>
@@ -117,13 +120,14 @@ const Read = () => {
                   <LikeIcon
                     src="img/like.png"
                     onClick={() => likes(photo.id)}
+                    // onClick={() => setLike(like + 1)}
                     alt="#"
                   />
-                  <LikeCount>{like}</LikeCount>
+                  <LikeCount>{photo.like_count}</LikeCount>
                 </Like>
               </Tag>
             </TagDom>
-          </>
+          </Fragment>
         ))}
     </Body>
   );

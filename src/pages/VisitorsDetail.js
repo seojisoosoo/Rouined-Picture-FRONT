@@ -12,7 +12,11 @@ const Button = styled.button`
   cursor: pointer;
 `;
 const Hr = styled.hr`
-  width: 20vh;
+  width: 30vh;
+`;
+const HrR = styled.hr`
+  height: 10vh;
+  transform: rotate(90deg);
 `;
 const Dom = styled.div`
   margin-top: 2vh;
@@ -39,16 +43,31 @@ const TicketDom = styled.div`
   margin-top: 2vh;
   display: flex;
   justify-content: center;
-  text-align: center;
+  //   text-align: center;
 `;
 const Font = styled.h1`
   font-family: Courier New;
   font-weight: lighter;
+  width: 50vh;
 `;
 const TicketIn = styled.div`
   transform: rotate(90deg);
-  float: left;
+  padding: 20px;
 `;
+const PFont = styled.p`
+  width: 50vh;
+  padding: 0;
+`;
+const Logo = styled.div`
+  font-size: 70pt;
+  width: 50vh;
+`;
+const Date = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 50vh;
+`;
+const TicketOut = styled.div``;
 const VisitorsDetail = () => {
   return (
     <>
@@ -60,25 +79,27 @@ const VisitorsDetail = () => {
       <TicketDom>
         <Ticket id="ticket">
           <TicketIn>
-            <p>
+            <Font>
               Thanks to <strong>SooSoo</strong>
-            </p>
+            </Font>
             <Hr />
-            <p>망한 사진에도 소중한 추억들은 완연히 담겨있습니다</p>
+            <PFont>망한 사진에도 소중한 추억들은 완연히 담겨있습니다</PFont>
             <Hr />
-            <p> 📷 📸 📷 </p>
-            <div>
-              <p>2022.08.26</p>
-              <Hr />
-            </div>
+            <Logo> 📷 📸 📷 </Logo>
+            <Date>
+              <Font style={{ width: "13vh" }}>2022.08.26</Font>
+              <HrR />
+            </Date>
           </TicketIn>
-          {/* <div>
-            <p>忘 ; </p>
+          <TicketOut>
             <div>
-              <p>망한 사진 전시회</p>
-              <img src="img/lines.png" alt="#" />
+              <h3>忘 ; </h3>
+              <div style={{ display: "flex", flexDirection: "row" }}>
+                <h3>망한 사진 전시회</h3>
+                <img src="img/lines.png" alt="#" />
+              </div>
             </div>
-          </div> */}
+          </TicketOut>
         </Ticket>
       </TicketDom>
 

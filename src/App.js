@@ -9,6 +9,7 @@ import "./App.css";
 import Landing from "./pages/Landing";
 import Check from "./component/Check";
 import Visitors from "./pages/Visitors";
+import VisitorsCreate from "./pages/VisitorsCreate";
 
 const Dom = styled.div`
   position: absolute;
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/:id/update" element={<Update />} />
         <Route path="/:id/check" element={<Check />} />
         <Route path="/visitors" element={<Visitors />} />
+        <Route path="/visitorsCreate" element={<VisitorsCreate />} />
       </Routes>
     </Dom>
   );

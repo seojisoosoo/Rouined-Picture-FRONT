@@ -19,12 +19,13 @@ const Card = styled.div`
   background-color: #ebe7e3;
   box-shadow: 0px 0px 15px 0px #b8b8b8;
   width: 15vh;
+  height: 10vh;
   border-radius: 20px;
+  flex: 1;
 `;
 const CardDom = styled.div`
   display: flex;
-  justify-content: space-between;
-  width: 60vh;
+  justify-content: center;
 `;
 const Hr = styled.hr`
   width: 10vh;
@@ -40,7 +41,7 @@ const Font = styled.p`
 const Width = styled.div`
   width: 60vh;
   display: flex;
-  justify-content: center;
+  // justify-content: center;
 `;
 const Visitors = () => {
   return (
@@ -58,8 +59,8 @@ const Visitors = () => {
       <Link to="/visitorsCreate">
         <button>방명록 작성하기</button>
       </Link>
-      <Width>
-        <CardDom>
+      <CardDom>
+        <Width>
           <Card>
             <Font style={{ fontSize: "30pt" }}>📷</Font>
             <Font>SooSoo</Font>
@@ -77,7 +78,7 @@ const Visitors = () => {
           </Card>
           <Card>
             <Font style={{ fontSize: "30pt" }}>📷</Font>
-            <Font>SooSoo</Font>
+            <Font>SooSddddoo</Font>
             <Hr />
           </Card>
           <Card>
@@ -90,8 +91,8 @@ const Visitors = () => {
             <Font>SooSoo</Font>
             <Hr />
           </Card>
-        </CardDom>
-      </Width>
+        </Width>
+      </CardDom>
     </Dom>
   );
 };

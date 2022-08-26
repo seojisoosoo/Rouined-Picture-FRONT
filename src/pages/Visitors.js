@@ -36,7 +36,8 @@ const Hr = styled.hr`
 const Font = styled.p`
   font-size: 15pt;
   font-weight: bold;
-  margin: -10px;
+  margin: -9px;
+  font-family: Courier New;
 `;
 const Width = styled.div`
   width: 60vh;

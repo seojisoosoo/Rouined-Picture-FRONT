@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import "../App.css";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 
 const Input = styled.input`
   border: 1px solid transparent;
@@ -16,7 +17,7 @@ const Hr = styled.hr`
 const Dom = styled.div`
   display: flex;
   justify-content: center;
-  text-algin: center;
+  text-align: center;
 `;
 const Button = styled.button`
   margin: 5vh 0.5vh;
@@ -58,8 +59,10 @@ const Check = () => {
       </Dom>
 
       <Dom>
-        <Button onClick={check}>submit</Button>
-        <Button>cancel</Button>
+        <Button onClick={check}>check</Button>
+        <Link to="/read">
+          <Button>cancel</Button>
+        </Link>
       </Dom>
     </BodyDom>
   );

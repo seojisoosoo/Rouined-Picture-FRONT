@@ -135,7 +135,7 @@ const Update = () => {
       <Dom>
         <Background id="background" />
         <Img htmlFor="file">
-          <ImgIcon src="img/addimg.png" alt="logo" />
+          <ImgIcon src="img/addimg2.png" alt="logo" />
           {imageSrc && (
             <ShowImg
               src={imageSrc}

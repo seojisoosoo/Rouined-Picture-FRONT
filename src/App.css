@@ -27,4 +27,6 @@ textarea:focus {outline: none;}
   color: red;
   visibility: hidden;
 }
-
+h3{
+  margin: 0px;
+}

@@ -1,8 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Visitors from "./Visitors";
+// import Visitors from "./Visitors";
 import "../App.css";
+import "https://code.jquery.com/jquery-3.4.1.min.js";
+import "https://html2canvas.hertzen.com/dist/html2canvas.min.js";
+import html2canvas from "html2canvas";
+
 const Button = styled.button`
   border: 0px solid transparent;
   background-color: transparent;
@@ -12,15 +16,30 @@ const Button = styled.button`
   cursor: pointer;
 `;
 const Hr = styled.hr`
-  width: 30vh;
+  width: 38vh;
   float: left;
   margin: 0;
 `;
-// const HrR = styled.hr`
-//   weight: 5vh;
-// `;
+const HrD = styled.hr`
+  width: 20vh;
+  float: left;
+  margin: 0;
+`;
+const HrR = styled.hr`
+  position: relative;
+  //   top: 1.5vh;
+  left: 1.5vh;
+  width: 26vh;
+`;
 const Dom = styled.div`
   margin-top: 2vh;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+`;
+const DownloadDom = styled.div`
+  margin-top: 20vh;
   display: flex;
   justify-content: center;
   text-align: center;
@@ -38,11 +57,15 @@ const Ticket = styled.div`
 
   //   width: 30vh;
   //   height: 55vh;
-  width: 55vh;
-  height: 30vh;
+  //   width: 60vh;
+  //   height: 30vh;
+  width: 460px;
+  height: 230px;
   border-radius: 15px;
   background-color: #ebe7e3;
   box-shadow: 0px 0px 15px 0px #b8b8b8;
+  transform: rotate(90deg);
+  margin-top: 15vh;
 `;
 const TicketDom = styled.div`
   margin-top: 2vh;
@@ -55,7 +78,7 @@ const Font = styled.h1`
   font-family: Courier New;
   font-weight: lighter;
   font-size: 20pt;
-  width: 50vh;
+  width: 55vh;
 `;
 const TicketIn = styled.div`
   //   transform: rotate(90deg);
@@ -68,18 +91,32 @@ const Logo = styled.div`
   float: left;
 `;
 const Date = styled.div`
-  //   display: flex;
-  //   flex-direction: row;
-  //   width: 50vh;
+  display: flex;
+  flex-direction: row;
+  width: 55vh;
 `;
 const TicketOut = styled.div`
-  width: 30vh;
-  margin: -17vh 0vh 0vh 45vh;
+  float: right;
+  padding: 22vh 0vh 0vh 0vh;
   transform: rotate(-90deg);
-  position: relative;
-  z-index: 2;
 `;
 const VisitorsDetail = () => {
+  const onCapture = () => {
+    console.log("onCapture");
+    html2canvas(document.querySelector("#ticket")).then((canvas) => {
+      onSaveAs(canvas.toDataURL("image/png"), "visitor-ticket.png");
+    });
+  };
+  const onSaveAs = (uri, filename) => {
+    console.log("onSaveAs");
+    let link = document.createElement("a");
+    document.body.appendChild(link);
+    link.href = uri;
+    link.download = filename;
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <>
       <Dom>
@@ -93,33 +130,49 @@ const VisitorsDetail = () => {
             <Font>
               Thanks to <strong>SooSoo</strong>
             </Font>
-            <Hr />
-            <P>망한 사진에도 소중한 추억들은 완연히 담겨있습니다</P>
-            <Hr />
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <Hr />
+              <P>망한 사진에도 소중한 추억들은 완연히 담겨있습니다</P>
+              <Hr />
+            </div>
+
             <br />
             <Logo> 📷 📸 📷 </Logo>
             <Date>
-              <Font style={{ width: "13vh" }}>2022.08.26</Font>
+              <Font>
+                <div style={{ float: "left" }}>2022.08.26</div>
+                <div style={{ float: "left" }}>
+                  <HrR />
+                </div>
+              </Font>
             </Date>
           </TicketIn>
           <TicketOut>
             <h3>忘 ; </h3>
-            <div style={{ display: "flex", flexDirection: "row" }}>
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
               <h3 style={{ marginRight: "1vh" }}>망한 사진 전시회 </h3>
               <img src="img/lines.png" alt="#" />
             </div>
           </TicketOut>
         </Ticket>
+        {/* <img src="img/ticket.png" alt="#" /> */}
       </TicketDom>
-
-      <Dom>
-        <Hr />
-        <Button>
-          <P>내 방명록 다운로드</P>
-          <img src="img/download.png" alt="#" />
-        </Button>
-        <Hr />
-      </Dom>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <DownloadDom>
+          <HrD style={{ width: "180px" }} />
+          <Button onClick={onCapture} style={{ width: "180px" }}>
+            <P style={{ width: "14vh" }}>내 방명록 다운로드</P>
+            <img src="img/download.png" alt="#" />
+          </Button>
+          <HrD style={{ width: "180px" }} />
+        </DownloadDom>
+      </div>
     </>
   );
 };

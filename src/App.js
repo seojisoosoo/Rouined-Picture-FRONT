@@ -31,9 +31,9 @@ const App = () => {
         <Route path="/create" element={<Create />} />
         <Route path="/:id/update" element={<Update />} />
         <Route path="/:id/check" element={<Check />} />
-        <Route path="/visitors" element={<Visitors />} />
+        <Route path="/visitor" element={<Visitors />} />
+        <Route path="/visitor/:id" element={<VisitorsDetail />} />
         <Route path="/visitorsCreate" element={<VisitorsCreate />} />
-        <Route path="/visitorsDetail" element={<VisitorsDetail />} />
       </Routes>
     </Dom>
   );

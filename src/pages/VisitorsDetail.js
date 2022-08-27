@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 // import Visitors from "./Visitors";
 import "../App.css";
-import "https://code.jquery.com/jquery-3.4.1.min.js";
-import "https://html2canvas.hertzen.com/dist/html2canvas.min.js";
+// import "https://code.jquery.com/jquery-3.4.1.min.js";
+// import "https://html2canvas.hertzen.com/dist/html2canvas.min.js";
 import html2canvas from "html2canvas";
 
 const Button = styled.button`
@@ -101,6 +101,17 @@ const TicketOut = styled.div`
   transform: rotate(-90deg);
 `;
 const VisitorsDetail = () => {
+  console.log("악");
+
+  const { state } = useLocation;
+  console.log(state.id);
+
+  const id = state.id;
+  const detail = state.detail;
+  //   const detail = state.visitors.filter((visitor) => visitor.id === id)[0];
+  console.log(id);
+  console.log(detail);
+
   const onCapture = () => {
     console.log("onCapture");
     html2canvas(document.querySelector("#ticket")).then((canvas) => {
@@ -120,7 +131,7 @@ const VisitorsDetail = () => {
   return (
     <>
       <Dom>
-        <Link to="/visitors">
+        <Link to="/visitor">
           <button>방명록 목록</button>
         </Link>
       </Dom>
@@ -128,7 +139,7 @@ const VisitorsDetail = () => {
         <Ticket id="ticket">
           <TicketIn>
             <Font>
-              Thanks to <strong>SooSoo</strong>
+              Thanks to <strong>{detail.visitor}</strong>
             </Font>
             <div style={{ display: "flex", flexDirection: "column" }}>
               <Hr />
@@ -140,7 +151,9 @@ const VisitorsDetail = () => {
             <Logo> 📷 📸 📷 </Logo>
             <Date>
               <Font>
-                <div style={{ float: "left" }}>2022.08.26</div>
+                <div style={{ float: "left" }}>
+                  {detail.year}.{detail.month}.{detail.day}
+                </div>
                 <div style={{ float: "left" }}>
                   <HrR />
                 </div>

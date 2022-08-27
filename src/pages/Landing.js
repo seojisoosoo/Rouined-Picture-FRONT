@@ -102,7 +102,7 @@ const Landing = () => {
         <Link to="/create">
           <Button>upload</Button>
         </Link>
-        <Link to="/visitors">
+        <Link to="/visitor">
           <Button>방명록</Button>
         </Link>
       </Dom>

@@ -1,7 +1,8 @@
 import React, { useRef } from "react";
 import "../App.css";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Input = styled.input`
   border: 1px solid transparent;
@@ -25,6 +26,25 @@ const BodyDom = styled.div`
   top: 20vh;
 `;
 const VisitorsCreate = () => {
+  const navigate = useNavigate();
+  const onSubmit = () => {
+    axios
+      .post(
+        "http://127.0.0.1:8000/visitor",
+        {
+          visitor: visitorRef.current.value,
+        },
+        {
+          "Content-Type": "application/json",
+        }
+      )
+      .then((res) => {
+        if (res.data.ok) {
+          alert("추가완료!");
+          navigate(`/${res.data.data.id}`);
+        }
+      });
+  };
   const visitorRef = useRef(null);
 
   return (
@@ -42,7 +62,7 @@ const VisitorsCreate = () => {
         </Dom>
         <Hr />
         <Dom>
-          <Button>submit</Button>
+          <Button onClick={onSubmit}>submit</Button>
           <Link to="/visitors">
             <Button>cancel</Button>
           </Link>

@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
 
 const Card = styled.button`
   border: 1px solid transparent;
@@ -14,7 +17,7 @@ const Hr = styled.hr`
   width: 10vh;
 `;
 const H1 = styled.h1`
-  margin: -1.5vh;
+  margin: -1vh;
   font-size: 35pt;
 `;
 const H3 = styled.h3`
@@ -23,28 +26,35 @@ const H3 = styled.h3`
   font-family: Courier New;
 `;
 const VisitorsRead = () => {
+  const navigate = useNavigate();
+  const [visitors, setVisitors] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get("http://127.0.0.1:8000/visitor");
+      console.log(response);
+      setVisitors(response.data.data);
+    };
+    fetchData();
+  }, []);
+
+  const cardClick = (url, id) => {
+    const detail = visitors.filter((visitor) => visitor.id === id)[0];
+    console.log(detail);
+    navigate(url, { state: { id: id, detail: detail } });
+  };
+
   return (
     <>
-      <Card>
-        <H1>📷</H1>
-        <H3>Soosoo</H3>
-        <Hr />
-      </Card>
-      <Card>
-        <H1>📷</H1>
-        <H3>Soosoo</H3>
-        <Hr />
-      </Card>
-      <Card>
-        <H1>📷</H1>
-        <H3>Soosoo</H3>
-        <Hr />
-      </Card>
-      <Card>
-        <H1>📷</H1>
-        <H3>Soosoo</H3>
-        <Hr />
-      </Card>
+      {visitors.map((visitor) => (
+        <Card
+          key={visitor.id}
+          onClick={() => cardClick(`/visitor/${visitor.id}`, visitor.id)}
+        >
+          <H1>📷</H1>
+          <H3>{visitor.visitor}</H3>
+          <Hr />
+        </Card>
+      ))}
     </>
   );
 };

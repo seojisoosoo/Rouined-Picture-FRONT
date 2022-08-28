@@ -11,6 +11,7 @@ import Check from "./component/Check";
 import Visitors from "./pages/Visitors";
 import VisitorsCreate from "./pages/VisitorsCreate";
 import VisitorsDetail from "./pages/VisitorsDetail";
+
 const Dom = styled.div`
   position: absolute;
   top: 0;
@@ -32,7 +33,10 @@ const App = () => {
         <Route path="/:id/update" element={<Update />} />
         <Route path="/:id/check" element={<Check />} />
         <Route path="/visitor" element={<Visitors />} />
+        {/* <Route path="/visitor" element={<VisitorsRead />} /> */}
+
         <Route path="/visitor/:id" element={<VisitorsDetail />} />
+
         <Route path="/visitorsCreate" element={<VisitorsCreate />} />
       </Routes>
     </Dom>

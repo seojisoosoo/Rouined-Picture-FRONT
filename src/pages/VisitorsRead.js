@@ -37,10 +37,11 @@ const VisitorsRead = () => {
     fetchData();
   }, []);
 
-  const cardClick = (url, id) => {
+  const ticketClick = (url, id) => {
     const detail = visitors.filter((visitor) => visitor.id === id)[0];
-    console.log(detail);
     navigate(url, { state: { id: id, detail: detail } });
+
+    // navigate(url, { state: { id: id, visitors: visitors } });
   };
 
   return (
@@ -48,7 +49,7 @@ const VisitorsRead = () => {
       {visitors.map((visitor) => (
         <Card
           key={visitor.id}
-          onClick={() => cardClick(`/visitor/${visitor.id}`, visitor.id)}
+          onClick={() => ticketClick(`/visitor/${visitor.id}`, visitor.id)}
         >
           <H1>📷</H1>
           <H3>{visitor.visitor}</H3>

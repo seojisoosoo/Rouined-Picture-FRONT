@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 // import Visitors from "./Visitors";
 import "../App.css";
 // import "https://code.jquery.com/jquery-3.4.1.min.js";
@@ -101,14 +102,19 @@ const TicketOut = styled.div`
   transform: rotate(-90deg);
 `;
 const VisitorsDetail = () => {
-  console.log("악");
+  const { state } = useLocation();
 
-  const { state } = useLocation;
+  //   const location = useLocation();
+  // const state = location.state as { nickname: string };
+  console.log(state);
+  if (state === undefined) {
+    console.log("실패" + state);
+  }
   console.log(state.id);
 
   const id = state.id;
   const detail = state.detail;
-  //   const detail = state.visitors.filter((visitor) => visitor.id === id)[0];
+  // const detail = state.visitors.filter((visitor) => visitor.id === id)[0];
   console.log(id);
   console.log(detail);
 
@@ -170,7 +176,7 @@ const VisitorsDetail = () => {
               }}
             >
               <h3 style={{ marginRight: "1vh" }}>망한 사진 전시회 </h3>
-              <img src="img/lines.png" alt="#" />
+              <img src="img/lines2.png" alt="#" />
             </div>
           </TicketOut>
         </Ticket>

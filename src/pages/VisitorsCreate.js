@@ -27,6 +27,7 @@ const BodyDom = styled.div`
 `;
 const VisitorsCreate = () => {
   const navigate = useNavigate();
+
   const onSubmit = () => {
     axios
       .post(
@@ -40,8 +41,11 @@ const VisitorsCreate = () => {
       )
       .then((res) => {
         if (res.data.ok) {
-          alert("추가완료!");
-          navigate(`/${res.data.data.id}`);
+          // alert("추가완료!");
+          // window.location.reload();
+
+          // navigate(`/visitor/${res.data.data.id}`);
+          navigate("/visitor");
         }
       });
   };
@@ -63,7 +67,7 @@ const VisitorsCreate = () => {
         <Hr />
         <Dom>
           <Button onClick={onSubmit}>submit</Button>
-          <Link to="/visitors">
+          <Link to="/visitor">
             <Button>cancel</Button>
           </Link>
         </Dom>

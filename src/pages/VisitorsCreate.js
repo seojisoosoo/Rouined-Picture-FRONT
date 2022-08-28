@@ -41,11 +41,13 @@ const VisitorsCreate = () => {
       )
       .then((res) => {
         if (res.data.ok) {
-          // alert("추가완료!");
-          // window.location.reload();
+          alert("추가완료!");
+          console.log("dd");
+          console.log(res);
 
+          // window.location.reload();
           // navigate(`/visitor/${res.data.data.id}`);
-          navigate("/visitor");
+          //   navigate("/visitor");
         }
       });
   };

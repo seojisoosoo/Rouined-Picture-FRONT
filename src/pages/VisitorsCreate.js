@@ -25,6 +25,7 @@ const BodyDom = styled.div`
   position: relative;
   top: 20vh;
 `;
+
 const VisitorsCreate = () => {
   const navigate = useNavigate();
 
@@ -39,27 +40,32 @@ const VisitorsCreate = () => {
           "Content-Type": "application/json",
         }
       )
-      // .then((res) => {
-      //   console.log("d" + res.data.ok);
-      //   if (res.data.ok) {
-      //     // alert("추가완료!");
-      //     console.log("dd");
-      //     // console.log(res);
-      //     // navigate("/");
-      //     // window.location.reload();
-      //     // navigate(`/visitor/${res.data.data.id}`);
-      //     //   navigate("/visitor");
-      //   }
-      // })
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
+        console.log("d" + res.data.ok);
         if (res.data.ok) {
-          alert("추가완료!");
-          console.log(res.data.ok);
-
+          // alert("추가완료!");
+          console.log("dd");
+          console.log(res);
           navigate("/visitor");
+          // window.location.reload();
+          // navigate(`/visitor/${res.data.data.id}`);
+          //   navigate("/visitor");
         }
       });
+
+    // .then((res) => {
+    //   console.log("hello");
+    // navigate("/visitor");
+
+    // console.log(res);
+    // if (res.data.ok) {
+    //   alert("추가완료!");
+    //   console.log(res.data.ok);
+
+    //   navigate("/visitor");
+    // }
+    // });
   };
   const visitorRef = useRef(null);
 
@@ -78,8 +84,10 @@ const VisitorsCreate = () => {
         </Dom>
         <Hr />
         <Dom>
-          <Button onClick={() => onSubmit()}>submit</Button>
           <Link to="/visitor">
+            <Button onClick={() => onSubmit()}>submit</Button>
+            {/* </Link> */}
+            {/* <Link to="/visitor"> */}
             <Button>cancel</Button>
           </Link>
         </Dom>

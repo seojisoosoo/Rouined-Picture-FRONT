@@ -176,7 +176,7 @@ const VisitorsDetail = () => {
               }}
             >
               <h3 style={{ marginRight: "1vh" }}>망한 사진 전시회 </h3>
-              <img src="img/lines2.png" alt="#" />
+              <img src="/img/lines2.png" alt="#" />
             </div>
           </TicketOut>
         </Ticket>
@@ -187,8 +187,9 @@ const VisitorsDetail = () => {
           <HrD style={{ width: "180px" }} />
           <Button onClick={onCapture} style={{ width: "180px" }}>
             <P style={{ width: "14vh" }}>내 방명록 다운로드</P>
-            <img src="img/download.png" alt="#" />
+            <img src="/img/download.png" alt="#" />
           </Button>
+
           <HrD style={{ width: "180px" }} />
         </DownloadDom>
       </div>

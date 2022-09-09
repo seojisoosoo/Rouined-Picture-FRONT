@@ -1,5 +1,7 @@
 # 망한 사진 전시회 - 프론트엔드 🌷
 
+서버 media 에러 해결 중!
+
 https://rouined-photo-exhibition.netlify.app/
 
 - [x] 랜딩 페이지 스타일링

@@ -112,9 +112,13 @@ const Update = () => {
     formData.append("password", passwordRef.current.value);
 
     axios
-      .post(`http://127.0.0.1:8000/${state.id}/update`, formData, {
-        "Content-Type": "application/json",
-      })
+      .post(
+        `https://rouined-photo-exhibition.herokuapp.com/${state.id}/update`,
+        formData,
+        {
+          "Content-Type": "application/json",
+        }
+      )
       .then((res) => {
         console.log(res);
         if (res.data.ok) {

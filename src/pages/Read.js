@@ -83,14 +83,16 @@ const Read = () => {
 
   const likes = (id) => {
     // setLike(like + 1);
-    axios.post(`http://127.0.0.1:8000/${id}/like`).then((res) => {
-      if (res.data.ok) {
-        console.log(res.data);
-        window.location.reload();
-        // setLike[id] = res.data.data.like_count;
-        // console.log(like);
-      }
-    });
+    axios
+      .post(`https://rouined-photo-exhibition.herokuapp.com/${id}/like`)
+      .then((res) => {
+        if (res.data.ok) {
+          console.log(res.data);
+          window.location.reload();
+          // setLike[id] = res.data.data.like_count;
+          // console.log(like);
+        }
+      });
   };
   return (
     <Body>

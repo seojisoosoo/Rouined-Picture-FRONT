@@ -32,7 +32,7 @@ const VisitorsCreate = () => {
   const onSubmit = () => {
     axios
       .post(
-        "http://127.0.0.1:8000/visitor",
+        "https://rouined-photo-exhibition.herokuapp.com/visitor",
         {
           visitor: visitorRef.current.value,
         },

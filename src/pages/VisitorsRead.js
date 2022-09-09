@@ -31,7 +31,9 @@ const VisitorsRead = () => {
   const [visitors, setVisitors] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://127.0.0.1:8000/visitor");
+      const response = await axios.get(
+        "https://rouined-photo-exhibition.herokuapp.com/visitor"
+      );
       console.log(response);
       setVisitors(response.data.data);
     };

@@ -72,7 +72,9 @@ const Read = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://127.0.0.1:8000/");
+      const response = await axios.get(
+        "https://rouined-photo-exhibition.herokuapp.com/"
+      );
       console.log(response.data);
       setPhotos(response.data.data);
       console.log("success");

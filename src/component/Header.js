@@ -49,9 +49,12 @@ const Header = () => {
         <Link to="/">
           <Logo>📷</Logo>
         </Link>
-        <Link to="#" state={{ textDecoration: "none" }}>
+        <a
+          href="https://forms.gle/XT6iU414ExfCjd3Q7"
+          state={{ textDecoration: "none" }}
+        >
           <Box>🌊 user feedback 🌊</Box>
-        </Link>
+        </a>
       </Dom>
 
       <Hr />

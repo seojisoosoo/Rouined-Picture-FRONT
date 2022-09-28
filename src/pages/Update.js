@@ -113,7 +113,8 @@ const Update = () => {
 
     axios
       .post(
-        `https://rouined-photo-exhibition.herokuapp.com/${state.id}/update`,
+        // `https://rouined-photo-exhibition.herokuapp.com/${state.id}/update`,
+        `/${state.id}/update`,
         formData,
         {
           "Content-Type": "application/json",

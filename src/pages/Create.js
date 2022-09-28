@@ -103,7 +103,8 @@ const Create = () => {
       formData.append("body", bodyRef.current.value);
       formData.append("password", passwordRef.current.value);
       axios
-        .post("https://rouined-photo-exhibition.herokuapp.com/", formData, {
+        // .post("https://rouined-photo-exhibition.herokuapp.com/", formData, {
+        .post("/", formData, {
           "Content-Type": "application/json",
         })
         .then((res) => {

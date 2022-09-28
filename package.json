@@ -39,5 +39,6 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://rouined-photo-exhibition.netlify.app/"
+  "homepage": "https://rouined-photo-exhibition.netlify.app/",
+  "proxy":"https://rouined-photo-exhibition.herokuapp.com/"
 }
